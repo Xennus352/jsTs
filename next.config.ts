@@ -1,7 +1,21 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        // Pattern for GitHub avatars
+
+        protocol: "https",
+
+        hostname: "avatars.githubusercontent.com",
+
+        port: "", // Leave empty for default port
+
+        pathname: "/**", // Allow all paths
+      },
+    ],
+  },
 };
 
 export default nextConfig;
