@@ -3,7 +3,7 @@ import BlogDetail from "@/components/BlogDetail";
 import React from "react";
 
 const page = async ({params}: {params:{blogId:string}}) => {
-  const {blogId} = await params
+  const {blogId} =  params
 const blog = await getSingleBlog(blogId)
   return (
     <>

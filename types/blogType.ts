@@ -13,6 +13,6 @@ export type blogType = {
 
   updatedAt: Date;
 
-  userId:string ;
+  userId:string | null;
   User?:userType
 };
