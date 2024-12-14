@@ -3,6 +3,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "./prisma";
 import GitHub from "next-auth/providers/github";
 import Facebook from "next-auth/providers/facebook";
+import { userType } from "./types/userType";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -20,4 +21,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientSecret: process.env.AUTH_FACEBOOK_SECRET,
     }),
   ],
+ 
 });

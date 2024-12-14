@@ -68,34 +68,45 @@ export const createBlog = async (formData: FormData) => {
 };
 
 // edit blog
-export const editBlog = async (data: FormData) => {
-  try {
-    // Extract and trim form data
-    const id = (data.get("id") as string)?.trim();
-    const title = (data.get("title") as string)?.trim();
-    const description = (data.get("description") as string)?.trim();
-    const link = (data.get("link") as string)?.trim();
-    const tag = (data.get("tag") as string)?.trim();
+// export const editBlog = async (data: FormData) => {
+//   try {
+//     const content ={
+//      id : data.get("id") as string,
+//      title : data.get("title") as string,
+//      description : data.get('description')  as string,
+//      link : data.get('link')  as string,
+//      tag : data.get('tag')  as string,
+//     }
+//     const updateBlog = await prisma.blog.update({
+//       where:{
+//         id:content.id
+//       },
+//       data:{...content}
+//     })
 
-    // Validate inputs
-    if (!id || !title || !description || !link || !tag) {
-      throw new Error("All fields are required");
-    }
+//   } catch (error) {
+//     console.error("Error on editing blog =>", error);
+//     throw new Error("Failed to edit blog");
+//   }
+// };
+export const editBlog = async (
+  id: string,
+  data: { title: string; description: string; link: string; tag: string }
+) => {
+  const res = await fetch(`/api/blog/update/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 
-    // Update the blog
-    const updatedBlog = await prisma.blog.update({
-      where: { id },
-      data: { title, description, link, tag },
-    });
-
-    // Return updated blog or success message
-    return updatedBlog;
-  } catch (error) {
-    console.error("Error on editing blog =>", error);
-    throw new Error("Failed to edit blog");
+  if (!res.ok) {
+    throw new Error("Failed to update blog");
   }
-};
 
+  return await res.json();
+};
 
 // delete blog
 export const deleteBlog = async (id: string) => {
@@ -113,19 +124,21 @@ export const deleteBlog = async (id: string) => {
 };
 
 // get blog by tag
-export const getTag = async (SarchTag:string) => {
+export const getTag = async (searchTag: string) => {
   try {
-    
-
-  const tagB =  await prisma.blog.findFirst({
+    const tagB = await prisma.blog.findMany({
       where: {
-        tag: SarchTag,
+        tag: searchTag,
       },
     });
-  return tagB
+
+    if (!tagB) {
+      return null;
+    }
+    return tagB;
   } catch (error) {
-    console.error("Error on saving blog => ", error);
-    throw new Error("Failed to save blog");
+    console.error("Error fetching tag:", error);
+    throw new Error("Failed to fetch tag");
   }
 };
 
@@ -170,11 +183,6 @@ export const getSaveBlog = async (userId: string) => {
 
 // delete save blogs
 export const deleteSaveBlog = async (postId: string) => {
-  if (!postId) {
-    console.error("Error: postId is null or undefined");
-    return;
-  }
-
   try {
     await prisma.savePost.delete({
       where: {
@@ -184,6 +192,7 @@ export const deleteSaveBlog = async (postId: string) => {
 
     console.log("save post deleted");
   } catch (error) {
-    console.log(" Error occurs while deleting...", error);
+    console.error("Error occurred while deleting the blog post:", error);
+    throw new Error("Error occurred while deleting the blog post.");
   }
 };

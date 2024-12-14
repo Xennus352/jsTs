@@ -8,7 +8,7 @@ const Nav = () => {
   const path = usePathname();
 
   return (
-    <div className={`${path == "/hero" && "hidden"} ` }>
+    <div className={`${path == "/hero" && "hidden"} mt-3` }>
       <div className="flex btm-nav justify-between items-center p-2 bg-green-700 cursor-pointer rounded-t-lg">
         <div
           className={`flex flex-col items-center justify-center gap-1  ${

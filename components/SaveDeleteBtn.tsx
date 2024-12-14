@@ -7,7 +7,7 @@ const SaveDeleteBtn = ({ id }: { id: string }) => {
   const router = useRouter();
   const handleDelete = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+   
     try {
       await deleteSaveBlog(id);
       router.refresh();
@@ -17,12 +17,11 @@ const SaveDeleteBtn = ({ id }: { id: string }) => {
   };
   return (
     <form onSubmit={handleDelete}>
-      <input
-        type="submit"
-        value="Delete"
+      <button
         className="cursor-pointer text-center w-full m-1 p-1 rounded-xl hover:shadow-md text-white bg-red-700"
-        name="delete"
-      />
+      >
+        Delete
+      </button>
     </form>
   );
 };

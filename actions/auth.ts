@@ -10,5 +10,5 @@ export async function login(provider: string) {
 
 export async function logout() {
   await signOut({ redirectTo: "/hero" });
-  revalidatePath("/hero");
+  revalidatePath("/profile");
 }

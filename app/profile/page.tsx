@@ -23,12 +23,11 @@ const page = async () => {
               </div>
             </Link>
 
-            <Link href="/dashboard" className=" ">
+            {/* <Link href="/dashboard" className=" ">
               <div className="text-md btn btn-sm m-2 hover:cursor-pointer hover:text-orange-600">
-                {/* <Pickaxe /> */}
                 Dashboard
               </div>
-            </Link>
+            </Link> */}
           </div>
         )}
         <Logout />
@@ -42,7 +41,7 @@ const page = async () => {
       </div>
 
       {/* save blogs  */}
-      <div className=" m-2 grid gap-3">
+      <div className=" m-2 overflow-y-scroll grid gap-3">
         <h2 className=" text-xl uppercase font-semibold m-3 text-center">
           save posts
         </h2>
@@ -51,7 +50,7 @@ const page = async () => {
             return (
               <SaveCard
                 key={save.id}
-                id={save.blogId}
+                id={save.id}
                 title={save.blog.title}
                 text={save.blog.description}
                 tag={save.blog.tag}

@@ -1,5 +1,5 @@
-"use client";
-import SingleCard from "@/components/SingleCard";
+
+import SearchHeader from "@/components/SearchHeader";
 import React from "react";
 
 const blog = () => {
@@ -11,26 +11,10 @@ const blog = () => {
         </header>
 
         {/* search header  */}
-        <div className="flex justify-center items-center">
-          <form className="flex gap-1">
-            <input
-              type="text"
-              name="tag"
-              placeholder="Type here"
-              className="input input-bordered input-ghost w-full"
-            />
-            <input
-              type="submit"
-              value="Search"
-              className="btn text-green-600"
-            />
-          </form>
-        </div>
-
+        <SearchHeader />
         {/* result category card   */}
         {/* render in single card  */}
-        <SingleCard />
-        {/* <div>some thing... search result</div> */}
+        {/* <SingleCard /> */}
       </div>
     </div>
   );

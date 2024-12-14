@@ -7,6 +7,8 @@ export type blogType = {
 
   link: string;
 
+  tag: string;
+
   updatedAt: Date;
 
   User?: {

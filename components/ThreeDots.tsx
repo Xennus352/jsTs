@@ -13,7 +13,7 @@ const ThreeDots = ({id}:{id:string}) => {
             {" "}
             <Ellipsis />
           </summary>
-          <ul className="absolute right-2 m-2 bg-indigo-950 p-5 rounded-md">
+          <ul className="absolute right-2 m-2 bg-indigo-950  p-5 rounded-md">
             <li>
               <EditBtn id={id} />
             </li>
