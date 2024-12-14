@@ -8,7 +8,7 @@ import { ChevronRightIcon } from "lucide-react";
 
 const SearchHeader = () => {
   const [searchTag, setSearchTag] = useState("");
-  const [result, setResult] = useState<blogType[] | null>(null);
+  const [result, setResult] = useState<blogType[]>([]);
 
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,7 +20,8 @@ const SearchHeader = () => {
         throw new Error("Failed to fetch tag");
       }
 
-      setResult(res);
+     setResult(res);
+      
     } catch (err) {
       console.log(err);
     }

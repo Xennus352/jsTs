@@ -32,7 +32,7 @@ const BlogDetail = async ({ blog }: { blog: blogType }) => {
           </div>
         </div>
         <div className={` flex items-center gap-3 m-2  `}>
-          <SaveBtn blogId={blog.id} userId={blog.userId} />
+          <SaveBtn blogId={blog.id} userId={blog?.userId} />
           <div className={`${currentUser?.role === "USER" && "hidden"}`}>
             <ThreeDots id={blog.id} />
           </div>
