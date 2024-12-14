@@ -8,13 +8,13 @@ import { ChevronRightIcon } from "lucide-react";
 
 const SearchHeader = () => {
   const [searchTag, setSearchTag] = useState("");
-  const [result, setResult] = useState<blogType[]>([]);
+  const [result, setResult] = useState<blogType[]>();
 
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const lower = searchTag.toLowerCase();
-      const res = await getTag(lower);
+      const res = await getTag(lower)!;
       if (!res) {
         setResult([]);
         throw new Error("Failed to fetch tag");

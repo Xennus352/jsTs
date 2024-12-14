@@ -1,18 +1,20 @@
+type UserRole = "ADMIN" | "USER";
+
 export interface userType {
-  id: String;
-  name: string | null;
+  id: string;
+  name: string ;
 
-  email: string | null;
+  email: string ;
 
-  emailVerified: Date | null;
+  emailVerified?: Date ;
 
-  image: string | null;
+  image: string ;
 
-  blog: string | null;
+  blog: string;
 
-  accounts: string | null;
+  accounts: string;
 
-  role?: string;
+  role?: UserRole;
   createdAt: Date;
   updatedAt: Date;
 }

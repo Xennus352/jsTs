@@ -6,11 +6,10 @@ import SaveBtn from "./SaveBtn";
 import ThreeDots from "./ThreeDots";
 import Image from "next/image";
 import next from "@/public/next.svg";
-import { blogType } from "@/types/blogType";
 
-const BlogDetail = async ({ blog }: { blog: blogType }) => {
+
+const BlogDetail = async ({ blog }) => {
   const currentUser = await getCurrentUser();
-
   return (
     <div className=" p-5">
       <div className={`flex justify-between items-center`}>
@@ -23,16 +22,16 @@ const BlogDetail = async ({ blog }: { blog: blogType }) => {
               alt="user photo"
               height={60}
               width={60}
-              src={blog.User?.image || next}
+              src={blog?.User?.image || next}
             />
           </div>
           <div className="w-full text-green-700 text-lg">
-            <div>{blog.User?.name}</div>
+            <div>{blog?.User?.name}</div>
             <div>{blog.updatedAt.toLocaleDateString()}</div>
           </div>
         </div>
         <div className={` flex items-center gap-3 m-2  `}>
-          <SaveBtn blogId={blog.id} userId={blog?.userId} />
+          <SaveBtn blogId={blog.id} userId={currentUser?.id} />
           <div className={`${currentUser?.role === "USER" && "hidden"}`}>
             <ThreeDots id={blog.id} />
           </div>
