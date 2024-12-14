@@ -8,23 +8,21 @@ import { ChevronRightIcon } from "lucide-react";
 
 const SearchHeader = () => {
   const [searchTag, setSearchTag] = useState("");
-  const [result, setResult] = useState<any>([]);
-  const [error, setError] = useState<any>("");
+  const [result, setResult] = useState<blogType[] | null>(null);
 
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const lower = searchTag.toLowerCase()
+      const lower = searchTag.toLowerCase();
       const res = await getTag(lower);
       if (!res) {
+        setResult([]);
         throw new Error("Failed to fetch tag");
       }
 
       setResult(res);
-      setError("");
     } catch (err) {
-      setError(err);
-      setResult(null);
+      console.log(err);
     }
   };
 
@@ -43,23 +41,22 @@ const SearchHeader = () => {
           <input type="submit" value="Search" className="btn text-green-600" />
         </form>
       </div>
-      {error && <div className="text-red-700 text-center text-xl">{error}</div>}
 
       {result && (
         <div>
           {result.map((blog: blogType) => {
-            
             return (
-              <div className="border rounded-md m-5 border-green-800 px-4" key={blog.id}>
+              <div
+                className="border rounded-md m-5 border-green-800 px-4"
+                key={blog.id}
+              >
                 {/* description and link  */}
                 <div className="p-4">
                   <h2 className="text-xl font-semibold text-green-700 mb-4">
                     {blog.title}
                   </h2>
                   <p className="text-base text-green-700 break-words mb-6 text-justify">
-                    <Link href={`/blog/${blog.id}`}>
-                      {blog.description}
-                    </Link>
+                    <Link href={`/blog/${blog.id}`}>{blog.description}</Link>
                   </p>
                   {/* External Link */}
                   <Link

@@ -1,3 +1,5 @@
+import { userType } from "./userType";
+
 export type blogType = {
   id: string;
 
@@ -11,7 +13,6 @@ export type blogType = {
 
   updatedAt: Date;
 
-  User?: {
-    id: string;
-  } | null;
+  userId:string | null;
+  User?:userType
 };

@@ -6,8 +6,9 @@ import SaveBtn from "./SaveBtn";
 import ThreeDots from "./ThreeDots";
 import Image from "next/image";
 import next from "@/public/next.svg";
+import { blogType } from "@/types/blogType";
 
-const BlogDetail = async ({ blog }: { blog: any }) => {
+const BlogDetail = async ({ blog }: { blog: blogType }) => {
   const currentUser = await getCurrentUser();
 
   return (

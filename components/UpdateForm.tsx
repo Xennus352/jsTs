@@ -12,8 +12,6 @@ const UpdateForm = ({ editId }: { editId: string }) => {
     link: "",
     tag: "",
   });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   // Fetch the blog data
   useEffect(() => {
@@ -28,8 +26,8 @@ const UpdateForm = ({ editId }: { editId: string }) => {
           link: data.link || "",
           tag: data.tag || "",
         });
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err) {
+        console.log(err);
       }
     };
 
@@ -45,16 +43,12 @@ const UpdateForm = ({ editId }: { editId: string }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
 
     try {
       await editBlog(editId, formData);
       alert("Blog updated successfully!");
-    } catch (err: any) {
-      setError("Failed to update the blog");
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      console.log("Failed to update the blog");
     }
   };
 

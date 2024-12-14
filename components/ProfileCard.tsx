@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import React from 'react'
 import next from "@/public/next.svg"
+import { userType } from '@/types/userType'
 
-export const ProfileCard = ({currentUser}: {currentUser: any}) => {
+export const ProfileCard = ({currentUser}: {currentUser: userType}) => {
   return (
     <>
     <div className="m-3 max-w-sm">
