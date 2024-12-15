@@ -3,8 +3,8 @@ import BlogDetail from "@/components/BlogDetail";
 
 import React from "react";
 
-const Page = async ({ params }: { params:{ bogId: string } }) => {
-  const id = params.bogId;
+const Page = async ({ params }: { params:{ blogId: string } }) => {
+  const id = params.blogId;
 
    const blog = await getSingleBlog(id);
   return (
