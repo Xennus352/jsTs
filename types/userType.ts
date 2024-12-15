@@ -14,7 +14,7 @@ export interface userType {
 
   accounts: string;
 
-  role?: UserRole;
+  role?: string;
   createdAt: Date;
   updatedAt: Date;
 }

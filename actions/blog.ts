@@ -2,6 +2,7 @@
 
 import { prisma } from "@/prisma";
 import { getCurrentUser } from "./user";
+import { redirect } from "next/navigation";
 
 // fetch all blogs
 export const getAllBlogs = async () => {
@@ -40,6 +41,7 @@ export const getSingleBlog = async (blogId: string) => {
 // new blog creating
 export const createBlog = async (formData: FormData) => {
   const currentUser = await getCurrentUser();
+
   try {
     const content = {
       title: (formData.get("title") as string)?.trim(),
@@ -61,6 +63,7 @@ export const createBlog = async (formData: FormData) => {
     await prisma.blog.create({
       data: content,
     });
+    
   } catch (error) {
     console.error("Error on creating blog => ", error);
     throw new Error("Failed to create blog");
@@ -70,26 +73,24 @@ export const createBlog = async (formData: FormData) => {
 // edit blog
 export const editBlog = async (data: FormData) => {
   try {
-    const content ={
-     id : data.get("id") as string,
-     title : data.get("title") as string,
-     description : data.get('description')  as string,
-     link : data.get('link')  as string,
-     tag : data.get('tag')  as string,
-    }
+    const content = {
+      id: data.get("id") as string,
+      title: data.get("title") as string,
+      description: data.get("description") as string,
+      link: data.get("link") as string,
+      tag: data.get("tag") as string,
+    };
     const updateBlog = await prisma.blog.update({
-      where:{
-        id:content.id
+      where: {
+        id: content.id,
       },
-      data:{...content}
-    })
-
+      data: { ...content },
+    });
   } catch (error) {
     console.error("Error on editing blog =>", error);
     throw new Error("Failed to edit blog");
   }
 };
-
 
 // delete blog
 export const deleteBlog = async (id: string) => {

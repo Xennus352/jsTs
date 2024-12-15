@@ -10,7 +10,7 @@ type InputProps = {
   required?: boolean;
 };
 
-const Input = ({ placeHolder, name, type, required, value }: InputProps) => {
+const Input = ({ placeHolder, name, type, required, value , onChange}: InputProps) => {
   return (
     <>
       <input
@@ -19,6 +19,7 @@ const Input = ({ placeHolder, name, type, required, value }: InputProps) => {
         placeholder={placeHolder}
         required={required}
         defaultValue={value}
+        onChange={onChange}
         className="input w-full focus:border-t-0 focus:border-x-0  focus:outline-none py-10 text-lg text-green-600"
       />
     </>

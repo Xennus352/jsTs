@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 import SaveDeleteBtn from "./SaveDeleteBtn";
+
 type SaveProps = {
   id: string;
   tag: string;
@@ -10,7 +11,7 @@ type SaveProps = {
 };
 const SaveCard = ({ id, tag, title, text }: SaveProps) => {
   const router = useRouter();
-
+  
 
   return (
     <>
