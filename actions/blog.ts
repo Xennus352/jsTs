@@ -68,45 +68,28 @@ export const createBlog = async (formData: FormData) => {
 };
 
 // edit blog
-// export const editBlog = async (data: FormData) => {
-//   try {
-//     const content ={
-//      id : data.get("id") as string,
-//      title : data.get("title") as string,
-//      description : data.get('description')  as string,
-//      link : data.get('link')  as string,
-//      tag : data.get('tag')  as string,
-//     }
-//     const updateBlog = await prisma.blog.update({
-//       where:{
-//         id:content.id
-//       },
-//       data:{...content}
-//     })
+export const editBlog = async (data: FormData) => {
+  try {
+    const content ={
+     id : data.get("id") as string,
+     title : data.get("title") as string,
+     description : data.get('description')  as string,
+     link : data.get('link')  as string,
+     tag : data.get('tag')  as string,
+    }
+    const updateBlog = await prisma.blog.update({
+      where:{
+        id:content.id
+      },
+      data:{...content}
+    })
 
-//   } catch (error) {
-//     console.error("Error on editing blog =>", error);
-//     throw new Error("Failed to edit blog");
-//   }
-// };
-export const editBlog = async (
-  id: string,
-  data: { title: string; description: string; link: string; tag: string }
-) => {
-  const res = await fetch(`/api/blog/update/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to update blog");
+  } catch (error) {
+    console.error("Error on editing blog =>", error);
+    throw new Error("Failed to edit blog");
   }
-
-  return await res.json();
 };
+
 
 // delete blog
 export const deleteBlog = async (id: string) => {

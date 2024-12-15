@@ -3,13 +3,15 @@ import BlogDetail from "@/components/BlogDetail";
 
 import React from "react";
 
-const Page = async ({ params }:{params:{blogId:string}}) => {
-  const { blogId } =  params ;
-  const blog = await getSingleBlog(blogId);
+const Page = async ({ params }: { params:{ bogId: string } }) => {
+  const id = params.bogId;
+
+   const blog = await getSingleBlog(id);
   return (
     <>
       <div className=" border border-green-500 mb-5 rounded-md">
-      <BlogDetail blog={blog} />
+        <BlogDetail blog={blog} />
+        
       </div>
     </>
   );
