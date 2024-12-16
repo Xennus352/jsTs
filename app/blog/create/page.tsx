@@ -6,14 +6,13 @@ import Input from "@/components/Input";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-const create = () => {
+const createPost = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     link: "",
     tag: "",
   });
-  const notify = toast.success("Successfully created!");
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -98,4 +97,4 @@ const create = () => {
   );
 };
 
-export default create;
+export default createPost;
