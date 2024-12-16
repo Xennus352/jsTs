@@ -6,7 +6,7 @@ import Input from "@/components/Input";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-const createPost = () => {
+const page = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -97,4 +97,4 @@ const createPost = () => {
   );
 };
 
-export default createPost;
+export default page;
