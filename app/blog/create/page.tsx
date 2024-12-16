@@ -26,7 +26,7 @@ const create = () => {
       form.append("tag", formData.tag);
 
       await createBlog(form);
-   
+      toast.success("Created Successfully!");
       window.location.href = "/";
     } catch (error) {
       console.error("Error creating blog:", error);
