@@ -1,11 +1,11 @@
 import { getSingleBlog } from "@/actions/blog";
 import BlogDetail from "@/components/BlogDetail";
-
 import React from "react";
 
-const Page = async ({ params }: { params:{ blogId: string } }) => {
-  const id = params.blogId;
+type Params = Promise<{ id: string }>
 
+const Page = async ({ params }: { params:Params }) => {
+  const { id } = await params
    const blog = await getSingleBlog(id);
   return (
     <>
