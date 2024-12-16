@@ -6,7 +6,7 @@ import Input from "@/components/Input";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-const page = () => {
+const Page = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -29,6 +29,7 @@ const page = () => {
       window.location.href = "/";
     } catch (error) {
       console.error("Error creating blog:", error);
+      toast.error("Error creating blog!");
     }
   };
 
@@ -97,4 +98,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
